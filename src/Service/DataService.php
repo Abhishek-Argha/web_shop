@@ -17,12 +17,15 @@ class DataService
         $this->container=$container;
     }
 
+    //return the paginated data to the controller
     public function getPaginatedData($request)
     {
         $session = $request->getSession();
+        //check if the csv file is already read and it is in the session
         if($session->get('trimmedData')){
             $trimmedData = $session->get('trimmedData');
         }
+        //else read the csv file and save the data in session
         else{
             $trimmedData = $this->getTrimmedData();
             $session->set('trimmedData', $trimmedData);
@@ -37,6 +40,7 @@ class DataService
         return $results;
     }
 
+    //trimming the data from unnecessary characters and saving it as an array
     public function getTrimmedData()
     {
         $csvData = $this->readCSV();
@@ -61,6 +65,7 @@ class DataService
         return $data;
     }    
 
+    //read the data from the csv file
     public function readCSV()
     {
         $serializer = new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);

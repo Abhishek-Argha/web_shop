@@ -1,5 +1,5 @@
 <?php
-// src/Controller/HomePageController.php
+// src/Controller/IndexController.php
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,7 @@ use App\Service\DataService;
 
 
 
-class HomePageController  extends AbstractController
+class IndexController extends AbstractController
 {
     public function index(Request $request, DataService $dataService): Response
     {   
