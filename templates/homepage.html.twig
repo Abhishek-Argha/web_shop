@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<body>
+
+    <div id="doc2" class="yui-t7">
+        <div id="inner">
+        
+            <div id="hd">
+                <div class="yui-gc">
+                    <div class="yui-u first">
+                        <h1>Webshop</h1>
+                    </div>
+                </div><!--// .yui-gc -->
+            </div><!--// hd -->
+
+            <div id="bd">
+                <div id="yui-main">
+                    <div class="yui-b">                        
+                           
+                        {% for row in data %}
+                        <div class="yui-gf">            
+                            <div class="yui-u first">
+                                <img src={{row.product_image}} width="120"  height="120">
+                            </div><!--// .yui-u -->
+                            <div class="yui-u">                                    
+                                <div class="job last">
+                                    <h2>{{ row.name }}</h2>
+                                    {% if row.manufacturer %}
+                                        <h3>Manufacturer: {{ row.manufacturer }}</h3>
+                                    {% endif %}
+                                    {% if row.price %}
+                                        <h4>{{ 'EUR'|currency_symbol }}{{ row.price}}</h4>
+                                    {% endif %}
+                                    <p>Product id: {{ row.id }}
+                                    {% if row.availability %}
+                                        </br>In stock: {{ row.availability}}
+                                    {% endif %}
+                                    {% if row.additional %}
+                                        </br>Additional information: {{ row.additional}}
+                                    {% endif %}
+                                    </p>
+                                </div>
+                            </div><!--// .yui-u -->
+                        </div><!--// .yui-gf -->
+                        {% endfor %}
+
+                    </div><!--// .yui-b -->
+                    <div class="navigation">
+                        <center>{{knp_pagination_render(data)}}</center>
+                    </div>
+                </div><!--// yui-main -->
+            </div><!--// bd -->
+        </div><!-- // inner -->
+    </div><!--// doc -->
+
+</body>
+{% endblock %}
+
